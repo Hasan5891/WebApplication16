@@ -1,0 +1,28 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/" translate>Angular Api</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      aria-controls="navbar-menu"
+      aria-label="Toggle navigation"
+      (click)="toggle()" [attr.aria-expanded]="!isExpanded"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="navbar-menu" class="collapse navbar-collapse float-xs-none" [ngbCollapse]="isExpanded">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link text-uppercase" routerLink="/student" routerLinkActive="active">
+          <i class="fa fa-user-circle"> </i>
+          <span translate>Students</span>
+        </a>
+        <a class="nav-item nav-link text-uppercase" routerLink="/detail" routerLinkActive="active">
+          <i class="fa fa-question-circle"></i>
+          <span translate>Detail</span>
+        </a>
+      </div>
+   
+    </div>
+  </nav>
+</header>
+

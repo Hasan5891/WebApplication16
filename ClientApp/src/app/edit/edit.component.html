@@ -1,0 +1,140 @@
+<div class="container-fluid">
+    <!-- HTML form mark up -->
+    <form [formGroup]="StForm" novalidate>
+      <div class="card">
+        <div class="card-header">
+          <div class="float-left"><h3 class="text-info">Студент</h3></div>
+          <div class="float-right">
+            <!-- HTML markup for form mode New or Edit -->
+            <h5 class="text-warning font-italic">{{ formMode }}</h5>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="alert alert-danger" [hidden]="!error" translate>
+         
+          </div>
+          <div class="form-group">
+            <label for="id">ИД</label>
+            <label class="d-block">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="id"
+                
+              />
+              <span hidden translate>Id</span>
+              <small
+                [hidden]="StForm.controls.id.valid || StForm.controls.id.untouched"
+                class="text-danger"
+                
+              >
+             ИД требуется
+              </small>
+            </label>
+  
+            <label for="name">ФИО</label>
+            <label class="d-block">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="name"
+                autocomplete="name"
+               
+                required
+              />
+              <span hidden translate>ФИО</span>
+              <small
+                [hidden]="StForm.controls.name.valid || StForm.controls.name.untouched"
+                class="text-danger"
+                >        
+               ФИО требуется
+              </small>
+            </label>
+            <label for="address">Адрес</label>
+  
+            <label class="d-block">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="address"
+                             />
+              <span hidden translate>Адресс</span>
+              <small
+                [hidden]="StForm.controls.address.valid || StForm.controls.address.untouched"
+                class="text-danger"
+                
+              >
+              Адрес требуется
+              </small>
+            </label>
+            <label for="hire_date">Дата рождения</label>
+  
+            <label class="d-block">
+                <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="hire_date" 
+                             
+                required
+              />
+              
+                </div>
+              <span hidden translate>Дата рождения</span>
+              <small
+                [hidden]="
+                StForm.controls.hire_date.valid || StForm.controls.hire_date.untouched
+                "
+                class="text-danger"
+                translate
+              >
+               Дата рождения требуется
+              </small>
+            </label>
+          
+           
+           
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="float-left">
+            
+            <button
+              (click)="onCreate()"
+              class="btn btn-primary w-20"
+              type="submit"
+              [disabled]="StForm.invalid || !isAddNew"
+              *ngIf="this.isAddNew"
+            >
+              <span ><i class="fa fa-plus"></i> Создать</span>
+            </button>
+      
+            <button
+              (click)="onUpdate()"
+              class="btn btn-primary w-20"
+              type="submit"
+              [disabled]="StForm.invalid || isAddNew"
+              *ngIf="!this.isAddNew"
+            >
+              <span translate><i class="fa fa-edit"></i> Обновить</span>
+            </button>
+          
+            <button
+              (click)="onDelee()"
+              class="btn btn-danger w-20"
+              type="submit"
+              [disabled]="StForm.invalid || isAddNew"
+              *ngIf="!this.isAddNew"
+            >
+              <span ><i class="fa fa-trash-alt"></i> Удалить</span>
+            </button>
+          </div>
+          <div class="float-right">
+         
+            <a class="btn text-dark" [routerLink]="['/student']"><i class="fa fa-arrow-left"></i> Назад</a>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  

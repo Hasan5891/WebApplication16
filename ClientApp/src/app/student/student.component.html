@@ -1,0 +1,135 @@
+<!--  <form [formGroup]="StForm" (ngSubmit)="(this[EventValue])">
+  <h3>Student Table CRUD Operation</h3>
+  <div class="row">
+    <table class="table">
+      <tr>
+        <td>Name</td>
+        <td>
+          <input type="hidden" formControlName="id" />
+          <input type="text" formControlName="name" />
+          <div
+            *ngIf="submitted && StForm.controls.Name.errors"
+            class="text-danger"
+          >
+            <div *ngIf="StForm.controls.Name.errors.required">
+              Name is required
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Adress</td>
+        <td>
+          <input type="text" formControlName="address" />
+          <div
+            *ngIf="submitted && StForm.controls.Address.errors"
+            class="text-danger"
+          >
+            <div *ngIf="StForm.controls.Address.errors.required">
+              Adress is required
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Hiredate</td>
+        <td>
+          <input type="datetime" formControlName="hire_date" />
+          <div
+            *ngIf="submitted && StForm.controls.hire_date.errors"
+            class="text-danger"
+          >
+            <div *ngIf="StForm.controls.hire_date.errors.required">
+              Hiredate is required
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <button type="submit" class="btn btn-primary">
+            {{ EventValue }}
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="row">
+    <table class="table table-striped">
+      <tr>
+        <td>Id</td>
+        <td>Name</td>
+
+        <td>Adress</td>
+        <td>Hiredate</td>
+        <td>Edit</td>
+        <td>Delete</td>
+      </tr>
+
+      <tr *ngFor="let d of data">
+        <td>{{ d.id }}</td>
+        <td>{{ d.name }}</td>
+
+        <td>{{ d.address }}</td>
+        <td>{{ d.hire_date }}</td>
+        <td><a (click)="EditData(d)" class="btn btn-warning">Edit</a></td>
+        <td><a (click)="deleteData(d.Id)" class="btn btn-danger">Delete</a></td>
+      </tr>
+    </table>
+  </div>
+</form> 
+  -->
+
+<div class="card">
+  <div class="card-header">
+    <div class="float-left"><h3 class="text-info">Просмотр и редактирование данных о студенте</h3></div>
+    <div class="float-right">
+      <!-- Add button with routerLink to the detail page -->
+      <a class="btn btn-primary" [routerLink]="['/edit']"
+        ><i class="fa fa-plus"></i> Добавить</a
+      >
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="form-group">
+      <label for="userName" class="control-label">Имя студена</label>
+      <input type="text"  class="form-control" (keyup)="search()"  id="name" name="name" [(ngModel)]="name">
+    </div>
+    <div [class.ngHide]="searchCriteria.isPageLoad"></div>
+    <div class="table-responsive-sm">
+      <!-- Angular Datatables server side paging -->
+      <table datatable [dtOptions]="dtOptions" class="table-border hover" [dtTrigger]="dtTrigger">
+        <thead>
+          <tr>
+            <th> ИД </th>
+            <th>ФИО</th>
+            <th>Адрес</th>
+            <th>Дата рождения</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="students?.length != 0">
+          <tr *ngFor="let student of students">
+            <td>
+              <!-- Hyperlink position number with routerLink and position Id parameter -->
+              <a [routerLink]="['/edit', student.id]">{{ student.id }}</a>
+            </td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.address }}</td>
+            <td>{{ student.hire_date }}</td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="students?.length == 0">
+          <tr>
+            <td colspan="3" class="no-data-available">Ma'lumot topilmadi</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-footer">
+    *Searchable columns are Number, Title and Description
+  </div>
+</div>
